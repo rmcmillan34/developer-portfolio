@@ -1,5 +1,3 @@
-import "server-only";
-
 import fs from "node:fs";
 import path from "node:path";
 import type { WritingEntry, WritingFrontmatter } from "../types/writing";
@@ -84,6 +82,12 @@ function readWritingFile(filename: string): WritingEntry {
   const slug = filename.replace(/\.mdx$/, "");
   const source = fs.readFileSync(path.join(writingDirectory, filename), "utf8");
   const { frontmatter, body } = parseFrontmatter(source);
+
+  if (["private", "embargoed"].includes(frontmatter.disclosure)) {
+    throw new Error(
+      `${filename} is marked ${frontmatter.disclosure}. Confidential writing must not be committed to the public portfolio repository.`,
+    );
+  }
 
   return { slug, frontmatter, body };
 }
