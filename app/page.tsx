@@ -1,17 +1,10 @@
 import Link from "next/link";
+import { getFeaturedCapabilities } from "./data/capabilities";
 import { getFeaturedProjects } from "./data/projects";
-
-const featuredCapabilities = [
-  "AI Engineering",
-  "Secure Software Engineering",
-  "AI Security",
-  "Python",
-  "FastAPI",
-  "Docker",
-];
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
+  const featuredCapabilities = getFeaturedCapabilities();
 
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20 lg:px-8 lg:py-24">
@@ -97,7 +90,7 @@ export default function Home() {
           {featuredProjects.map((project) => (
             <Link
               key={project.slug}
-              href="/projects"
+              href={`/projects/${project.slug}`}
               className="group rounded-lg border border-white/10 bg-surface p-6 transition-colors hover:border-white/25"
             >
               <h3 className="text-xl font-semibold tracking-tight">
@@ -143,12 +136,15 @@ export default function Home() {
         </div>
 
         <ul className="grid gap-3 sm:grid-cols-2">
-          {featuredCapabilities.map((capability) => (
+          {featuredCapabilities.slice(0, 6).map((capability) => (
             <li
-              key={capability}
-              className="rounded-lg border border-white/10 bg-surface px-5 py-4 text-sm font-medium"
+              key={capability.slug}
+              className="rounded-lg border border-white/10 bg-surface px-5 py-4"
             >
-              {capability}
+              <p className="text-sm font-medium">{capability.name}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-[0.14em] text-muted">
+                {capability.maturity}
+              </p>
             </li>
           ))}
         </ul>
