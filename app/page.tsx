@@ -1,25 +1,5 @@
 import Link from "next/link";
-
-const featuredProjects = [
-  {
-    name: "SIS / DELTA",
-    summary:
-      "A security assessment platform and evidence-grounded copilot for structured testing, findings, and reporting.",
-    tags: ["AI Security", "RAG", "Secure Software"],
-  },
-  {
-    name: "TFACT",
-    summary:
-      "A security-conscious AI support harness for technology-facilitated abuse response workflows.",
-    tags: ["AI Engineering", "FastAPI", "Safety"],
-  },
-  {
-    name: "AI Security Labs",
-    summary:
-      "Progressive containerised labs for learning, testing, and demonstrating AI application security concepts.",
-    tags: ["AI Security", "Docker", "Red Teaming"],
-  },
-];
+import { getFeaturedProjects } from "./data/projects";
 
 const featuredCapabilities = [
   "AI Engineering",
@@ -31,6 +11,8 @@ const featuredCapabilities = [
 ];
 
 export default function Home() {
+  const featuredProjects = getFeaturedProjects();
+
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20 lg:px-8 lg:py-24">
       <section className="grid gap-12 border-b border-white/10 pb-16 lg:grid-cols-[1.35fr_0.65fr] lg:items-end lg:pb-20">
@@ -114,16 +96,16 @@ export default function Home() {
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
           {featuredProjects.map((project) => (
             <Link
-              key={project.name}
+              key={project.slug}
               href="/projects"
               className="group rounded-lg border border-white/10 bg-surface p-6 transition-colors hover:border-white/25"
             >
               <h3 className="text-xl font-semibold tracking-tight">
-                {project.name}
+                {project.shortName ?? project.name}
               </h3>
               <p className="mt-3 leading-7 text-muted">{project.summary}</p>
               <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies and domains">
-                {project.tags.map((tag) => (
+                {[...project.domains, ...project.technologies].slice(0, 3).map((tag) => (
                   <li
                     key={tag}
                     className="rounded-full border border-white/10 px-3 py-1 font-mono text-xs text-muted"
