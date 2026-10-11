@@ -1,0 +1,50 @@
+---
+title: "Evidence over claims in a developer portfolio"
+summary: "Why this portfolio treats projects, requirements, verification, and engineering artifacts as stronger signals than unsupported skill lists."
+published: "2026-10-11"
+updated: "2026-10-11"
+type: "architecture-note"
+status: "published"
+disclosure: "public"
+tags: ["Portfolio", "Software Engineering", "Evidence"]
+relatedProjects: ["developer-portfolio"]
+relatedCapabilities: []
+hosting: "internal"
+---
+
+## The problem with a conventional skills list
+
+A portfolio can say **Python**, **AI Engineering**, or **Security Engineering**, but those labels alone do not explain what was actually built, how it was tested, or how confident a reviewer should be in the claim.
+
+This project uses a simple principle:
+
+> Professional capability should be supported by inspectable evidence wherever practical.
+
+## The evidence chain
+
+For this portfolio, useful evidence can come from several places:
+
+- a working project or implementation;
+- verification and validation artifacts;
+- requirements and architecture decisions;
+- security analysis and threat modelling;
+- technical writing that explains decisions and lessons learned;
+- formal education or certifications.
+
+The goal is not to make every claim look equally mature. The goal is to make the current level of evidence visible.
+
+## Capability maturity
+
+The portfolio uses the following progression:
+
+```text
+Claimed -> Studied -> Implemented -> Tested -> Demonstrated
+```
+
+A capability can therefore grow as stronger evidence becomes available instead of being represented as a binary skill/no-skill label.
+
+## Why this matters
+
+This structure makes the portfolio easier to inspect and harder to inflate. It also creates a useful foundation for later features such as evidence-grounded portfolio search, job-description comparison, and a constrained portfolio assistant.
+
+Those later systems should reason over structured evidence rather than inventing professional claims.
