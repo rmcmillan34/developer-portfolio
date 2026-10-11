@@ -1,12 +1,6 @@
 import Link from "next/link";
+import { projectStatusLabels } from "../lib/project-status";
 import type { Project } from "../types/project";
-
-const statusLabels: Record<Project["status"], string> = {
-  planning: "Planning",
-  "in-progress": "In progress",
-  completed: "Completed",
-  archived: "Archived",
-};
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -14,7 +8,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
-            {statusLabels[project.status]}
+            {projectStatusLabels[project.status]}
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight">
             {project.shortName ?? project.name}
